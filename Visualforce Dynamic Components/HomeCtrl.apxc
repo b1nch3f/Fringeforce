@@ -1,0 +1,21 @@
+public class HomeCtrl {
+    public Component.Apex.PageBlock getDynamicDetail() {
+        id userId = userinfo.getProfileId();
+        List<Profile> profiles = [select Name from profile where id = :userId];
+
+        String profileName = profiles.get(0).Name;
+        System.debug(profileName);
+
+        Component.Apex.PageBlock dynPageBlock = new Component.Apex.PageBlock();
+
+        if(profileName == 'System Administrator') {
+            Component.c.Admin admin = new Component.c.Admin();
+            dynPageBlock.childComponents.add(admin);
+        } else if(profileName == 'Blogger') {
+            Component.c.Blogger blogger = new Component.c.Blogger();
+            dynPageBlock.childComponents.add(blogger);
+        }
+
+        return dynPageBlock;
+    }
+}

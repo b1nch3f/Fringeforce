@@ -1,0 +1,6 @@
+<apex:page controller="HomeCtrl">
+    <h2>
+        Welcome
+    </h2>
+    <apex:dynamicComponent componentValue="{!dynamicDetail}" />
+</apex:page>

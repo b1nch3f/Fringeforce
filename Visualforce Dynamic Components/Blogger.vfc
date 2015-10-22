@@ -1,0 +1,5 @@
+<apex:component >
+    <div>
+        I'm Blogger
+    </div>
+</apex:component>
