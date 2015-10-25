@@ -1,0 +1,48 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" cache="false">
+
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <head>
+            <title>S3 POST Form</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <apex:stylesheet value="{!URLFOR($Resource.SLDS092, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+        </head>
+
+        <body>
+
+            <!-- REQUIRED SLDS WRAPPER -->
+            <div class="slds">
+
+                <!-- PRIMARY CONTENT WRAPPER -->
+                <div class="slds-grid">
+                    <div class="slds-col slds-size--1-of-1">
+                        <div class="slds-card">
+                            <div class="slds-card__body">
+                                <ul>
+                                    <li class="slds-tile slds-hint-parent">
+                                        <div class="slds-tile__detail">
+                                            <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                                <div class="slds-media__figure">
+                                                    <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+                                                        <use xlink:href="/resource/SLDS092/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="slds-media__body">
+                                                    <h2 class="slds-text-heading--small slds-truncate"> File Upload Success</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / PRIMARY CONTENT WRAPPER -->
+
+            </div>
+            <!-- / REQUIRED SLDS WRAPPER -->
+
+        </body>
+    </html>
+</apex:page>

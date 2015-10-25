@@ -1,0 +1,77 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" cache="false" controller="AWS_SimpleUpload">
+
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <head>
+            <title>S3 POST Form</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <apex:stylesheet value="{!URLFOR($Resource.SLDS092, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+        </head>
+
+        <body>
+            
+            <!-- REQUIRED SLDS WRAPPER -->
+            <div class="slds">
+
+                <!-- PRIMARY CONTENT WRAPPER -->
+                <div class="slds-grid">
+                    <div class="slds-col slds-size--1-of-1">
+                        <div class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <svg aria-hidden="true" class="slds-icon slds-icon--large">
+                                            <use xlink:href="/resource/SLDS092/assets/icons/doctype-sprite/svg/symbols.svg#image"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate"> Amazon S3 File Upload</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-card__body">
+                                <ul>
+                                    <li class="slds-tile slds-hint-parent">
+                                        <div class="slds-tile__detail">
+                                            <form action="http://sangramkesariray.s3.amazonaws.com/" data-folder="storage" id="upload_form" method="post" enctype="multipart/form-data">
+                                                <div>
+                                                    <input type="hidden" name="key" value="storage/${filename}" />
+                                                    <input type="hidden" name="acl" value="private" />
+                                                    <input type="hidden" name="success_action_redirect" value="https://c.ap2.visual.force.com/apex/UploadSuccess" />
+                                                    <input type="hidden" name="Content-Type" value="image/png" />
+                                                    <input type="hidden" name="AWSAccessKeyId" value="AKIAJGHLTLQ5KW2D33TA" />
+                                                    <input type="hidden" name="Policy" value="{!EncodedPolicy}" />
+                                                    <input type="hidden" name="Signature" value="{!Signature}" />
+                                                    <ul class="slds-list--vertical">
+                                                        <li class="slds-list__item">
+                                                            <label id="upload_label">Upload the image to be saved at AWS S3</label>
+                                                        </li>
+                                                        <li class="slds-list__item">
+                                                            <div class="divide_n">
+                                                                <input type="file" id="upload_file" name="file" />
+                                                            </div>
+                                                        </li>
+                                                        <li class="slds-list__item">
+                                                            <div class="divide_n">
+                                                                <input type="submit" name="upload" id="upload_submit_button" class="form_button button_link" value="Upload" />
+                                                                <a href="#" id="cancel_upload" class="button_link button_gray button_inline">Cancel</a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / PRIMARY CONTENT WRAPPER -->
+
+            </div>
+            <!-- / REQUIRED SLDS WRAPPER -->
+
+        </body>
+    </html>
+</apex:page>

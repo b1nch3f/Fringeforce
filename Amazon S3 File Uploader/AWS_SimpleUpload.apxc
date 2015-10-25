@@ -1,0 +1,34 @@
+public with sharing class AWS_SimpleUpload {
+    public string getEncodedPolicy()
+    {
+        // Replace www.cnn.com with where you want to redirect to
+        String policy_string = this.getJson('storage','https://c.ap2.visual.force.com/apex/UploadSuccess','image/');
+        Blob policy_blob = Blob.valueOf(policy_string);
+        String encoded_policy = EncodingUtil.base64Encode(policy_blob);
+        return encoded_policy;
+    }
+    private string getJson(String folder, String redirect, String content_type)
+    {
+        String j = '';
+        j += '{"expiration": "' + Datetime.now().addDays(1).format('yyyy-MM-dd\'T\'HH:mm:ss\'.000Z\'') + '",';
+        j += '"conditions": [';
+        j += '{"bucket": "' + 'sangramkesariray' + '"},';
+        j += '["starts-with", "$key", "' + folder + '/"],';
+        j += '{"acl": "private"},';
+        j += '{"success_action_redirect": "' + redirect + '"},';
+        j += '["starts-with", "$Content-Type", "' + content_type + '"]';
+        j += ']}';
+
+        return j;
+    }
+    public string getSignature()
+    {
+        String algorithmName = 'hmacSHA1';
+        Blob input = Blob.valueOf(getEncodedPolicy());
+        //aws_secret_key
+        Blob privateKey = Blob.valueOf('MDSJAh7L110+NC3BX3me0PyZgDanxh3BMWtogE0M');
+        Blob macSignature = Crypto.generateMac(algorithmName,input,privateKey);
+        String encodedSignature = EncodingUtil.base64Encode(macSignature);
+        return encodedSignature;
+    }
+}
